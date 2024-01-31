@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This class stores and updates information about a unit at run-time.
+/// </summary>
 public class Unit : MonoBehaviour
 {
     // For fairness, values should be the same across all units
@@ -15,20 +18,35 @@ public class Unit : MonoBehaviour
     [SerializeField]
     Text healthBar;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// This method initialises the unit's current number of health points and
+    /// its corresponding health bar.
+    /// </summary>
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.text = UpdateHealthBar();
     }
 
-    /* Display unit's current number of health points compared to the
-     * maximum possible number */
+    /// <summary>
+    /// This method updates the unit's health bar to reflect the unit's current
+    /// number of health points.
+    /// </summary>
+    /// <returns>
+    /// A string consisting of the unit's name, its current number of health
+    /// points, and its maximum possible number of health points.
+    /// </returns>
     string UpdateHealthBar()
     {
         return System.String.Format("{0}: {1}/{2}", gameObject.name, currentHealth, maxHealth);
     }
 
+    /// <summary>
+    /// This method reduces the unit's health points by a given amount.
+    /// </summary>
+    /// <returns>
+    /// True if the unit's health is equal to 0, otherwise false.
+    /// </returns>
     public bool TakeDamage()
     {
         currentHealth -= damage;
@@ -48,6 +66,9 @@ public class Unit : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// This method increases the unit's health points by a given amount.
+    /// </summary>
     public void Heal()
     {
         // Ensure unit's health does not exceed maximum number of health points
