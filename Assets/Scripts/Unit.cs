@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
     // For fairness, values should be the same across all units
     int maxHealth = 100;
     int healAmount = 10; // Health points gained when unit heals itself
-    int damage = 10; // Health points enemy loses when unit attacks
+    int damage = 10; // Health points lost when unit is attacked
 
     int currentHealth;
 
@@ -56,6 +56,8 @@ public class Unit : MonoBehaviour
         {
             currentHealth = 0;
         }
+
+        healthBar.text = UpdateHealthBar();
 
         // If the method returns true, the game ends as the unit has died
         if (currentHealth == 0)
