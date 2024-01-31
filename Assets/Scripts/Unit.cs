@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
      * maximum possible number */
     string UpdateHealthBar()
     {
-        return String.Format("{0}/{1}", currentHealth, maxHealth);
+        return System.String.Format("{0}: {1}/{2}", gameObject.name, currentHealth, maxHealth);
     }
 
     public bool TakeDamage()
