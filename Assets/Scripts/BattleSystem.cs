@@ -8,7 +8,7 @@ using UnityEngine;
 public class BattleSystem : MonoBehaviour
 {
     // List of possible game states
-    enum BattleState
+    public enum BattleState
     {
         START,
         LEFTTURN,
@@ -16,7 +16,7 @@ public class BattleSystem : MonoBehaviour
         END
     }
 
-    BattleState state;
+    public BattleState state;
 
     // Information about the unit on the left
     [SerializeField]
