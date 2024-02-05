@@ -18,6 +18,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     Text healthBar;
 
+    public bool isBlocking;
+
     /// <summary>
     /// This method initialises the unit's current number of health points and
     /// its corresponding health bar.
@@ -76,5 +78,13 @@ public class Unit : MonoBehaviour
         // Ensure unit's health does not exceed maximum number of health points
         currentHealth = currentHealth > maxHealth ? maxHealth : currentHealth + healAmount;
         healthBar.text = UpdateHealthBar();
+    }
+
+    /// <summary>
+    /// This method blocks damage during the next turn.
+    /// </summary>
+    public void Block()
+    {
+        isBlocking = true;
     }
 }

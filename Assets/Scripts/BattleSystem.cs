@@ -72,6 +72,9 @@ public class BattleSystem : MonoBehaviour
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : BattleState.LEFTTURN;
         currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
         enemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
+
+        // Units stop blocking on their next turn
+        currentUnit.isBlocking = false;
     }
 
     /// <summary>
@@ -80,8 +83,8 @@ public class BattleSystem : MonoBehaviour
     /// </summary>
     public void Attack()
     {
-        // Determine the unit to be attacked based on whose turn it is
-        bool isDead = enemy.TakeDamage();
+        // No damage will be done if the enemy is blocking
+        bool isDead = enemy.isBlocking ? false : enemy.TakeDamage();
 
         if (isDead)
         {
