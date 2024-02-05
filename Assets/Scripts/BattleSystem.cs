@@ -34,6 +34,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     Unit rightUnit;
 
+    Unit currentUnit;
+    Unit enemy;
+
     /// <summary>
     /// This method is called as soon as the scene is loaded.
     /// </summary>
@@ -54,26 +57,30 @@ public class BattleSystem : MonoBehaviour
         GameObject rightUnitInfo = Instantiate(rightUnitObject, rightUnitSpawn);
         rightUnit = rightUnitInfo.GetComponent<Unit>();
 
+        currentUnit = leftUnit;
+        enemy = rightUnit;
+
         state = BattleState.LEFTTURN;
     }
 
     /// <summary>
     /// This method changes the game's state after a unit has performed an
-    /// action.
+    /// action. It also passes control to the next unit.
     /// </summary>
     void ChangeTurn()
     {
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : BattleState.LEFTTURN;
+        currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
+        enemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
     }
 
     /// <summary>
     /// When called by a unit, this method will reduce the other unit's health
     /// by a fixed amount.
     /// </summary>
-    void Attack()
+    public void Attack()
     {
         // Determine the unit to be attacked based on whose turn it is
-        Unit enemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
         bool isDead = enemy.TakeDamage();
 
         if (isDead)
@@ -89,9 +96,8 @@ public class BattleSystem : MonoBehaviour
     /// <summary>
     /// This method increases the current unit's health by a fixed amount.
     /// </summary>
-    void Heal()
+    public void Heal()
     {
-        Unit currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
         currentUnit.Heal();
         ChangeTurn();
     }
