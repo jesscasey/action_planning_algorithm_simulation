@@ -19,15 +19,11 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     GameObject leftUnitObject;
     [SerializeField]
-    Transform leftUnitSpawn;
-    [SerializeField]
     Unit leftUnit;
     
     // Information about the unit on the right
     [SerializeField]
     GameObject rightUnitObject;
-    [SerializeField]
-    Transform rightUnitSpawn;
     [SerializeField]
     Unit rightUnit;
 
@@ -40,14 +36,11 @@ public class BattleSystem : MonoBehaviour
         BattleSetup();
     }
 
-    // Spawn agents and initialise game
+    // Initialise game
     void BattleSetup()
     {
-        GameObject leftUnitInfo = Instantiate(leftUnitObject, leftUnitSpawn);
-        leftUnit = leftUnitInfo.GetComponent<Unit>(); // Retrieve unit information
-
-        GameObject rightUnitInfo = Instantiate(rightUnitObject, rightUnitSpawn);
-        rightUnit = rightUnitInfo.GetComponent<Unit>();
+        leftUnit = leftUnitObject.GetComponent<Unit>(); // Retrieve unit information
+        rightUnit = rightUnitObject.GetComponent<Unit>();
 
         currentUnit = leftUnit;
         enemy = rightUnit;
