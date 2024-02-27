@@ -15,20 +15,14 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
-    // Information about the unit on the left
-    [SerializeField]
-    GameObject leftUnitObject;
     [SerializeField]
     Unit leftUnit;
     
-    // Information about the unit on the right
-    [SerializeField]
-    GameObject rightUnitObject;
     [SerializeField]
     Unit rightUnit;
 
     Unit currentUnit;
-    Unit enemy;
+    Unit currentEnemy;
 
     void Start()
     {
@@ -39,11 +33,8 @@ public class BattleSystem : MonoBehaviour
     // Initialise game
     void BattleSetup()
     {
-        leftUnit = leftUnitObject.GetComponent<Unit>(); // Retrieve unit information
-        rightUnit = rightUnitObject.GetComponent<Unit>();
-
         currentUnit = leftUnit;
-        enemy = rightUnit;
+        currentEnemy = rightUnit;
 
         state = BattleState.LEFTTURN;
     }
@@ -52,7 +43,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : BattleState.LEFTTURN;
         currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
-        enemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
+        currentEnemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;
@@ -61,7 +52,7 @@ public class BattleSystem : MonoBehaviour
     public void Attack()
     {
         // No damage will be done if the enemy is blocking
-        bool isDead = enemy.isBlocking ? false : enemy.TakeDamage();
+        bool isDead = currentEnemy.isBlocking ? false : currentEnemy.TakeDamage();
 
         if (isDead)
         {
