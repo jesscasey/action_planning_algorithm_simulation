@@ -10,7 +10,7 @@ public class Unit : MonoBehaviour
     int healAmount = 10; // Health points gained when unit heals itself
     int damage = 10; // Health points lost when unit is attacked
 
-    int currentHealth;
+    public int currentHealth;
 
     [SerializeField]
     Text healthBar;
