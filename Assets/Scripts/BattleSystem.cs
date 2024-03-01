@@ -37,22 +37,26 @@ public class BattleSystem : MonoBehaviour
         currentEnemy = rightUnit;
 
         state = BattleState.LEFTTURN;
+        Debug.Log("Left unit's turn");
     }
 
     void ChangeTurn()
     {
+        Debug.Log("Changing turns...");
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : BattleState.LEFTTURN;
         currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
         currentEnemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;
+        Debug.Log(state);
     }
 
     public void Attack()
     {
         // No damage will be done if the enemy is blocking
         bool isDead = currentEnemy.isBlocking ? false : currentEnemy.TakeDamage();
+        Debug.Log("Unit is attacking");
 
         if (isDead)
         {
@@ -67,6 +71,7 @@ public class BattleSystem : MonoBehaviour
     public void Heal()
     {
         currentUnit.Heal();
+        Debug.Log("Unit is healing");
         ChangeTurn();
     }
 }
