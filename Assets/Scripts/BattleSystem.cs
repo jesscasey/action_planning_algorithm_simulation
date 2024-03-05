@@ -36,6 +36,10 @@ public class BattleSystem : MonoBehaviour
         currentUnit = leftUnit;
         currentEnemy = rightUnit;
 
+        // Change colour of current unit to indicate whose turn it is
+        currentUnit.gameObject.GetComponent<Renderer>().material.color =
+            new Color(0, 136, 189);
+
         state = BattleState.LEFTTURN;
         Debug.Log("Left unit's turn");
     }
@@ -43,19 +47,26 @@ public class BattleSystem : MonoBehaviour
     void ChangeTurn()
     {
         Debug.Log("Changing turns...");
-        state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : BattleState.LEFTTURN;
+        state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : 
+            BattleState.LEFTTURN;
         currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
         currentEnemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;
         Debug.Log(state);
+
+        currentUnit.gameObject.GetComponent<Renderer>().material.color = 
+            new Color(0, 136, 189);
+        currentEnemy.gameObject.GetComponent<Renderer>().material.color = 
+            Color.white;
     }
 
     public void Attack()
     {
         // No damage will be done if the enemy is blocking
-        bool isDead = currentEnemy.isBlocking ? false : currentEnemy.TakeDamage();
+        bool isDead = currentEnemy.isBlocking ? false : 
+            currentEnemy.TakeDamage();
         Debug.Log("Unit is attacking");
 
         if (isDead)
