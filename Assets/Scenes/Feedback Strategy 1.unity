@@ -1196,7 +1196,11 @@ PrefabInstance:
     - target: {fileID: 6525904677225663472, guid: 62dc4fa217ae148438b8ad3693a10788, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2781121656276872715}
+      objectReference: {fileID: 3187148605174234865}
+    - target: {fileID: 6525904677225663472, guid: 62dc4fa217ae148438b8ad3693a10788, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Block
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 62dc4fa217ae148438b8ad3693a10788, type: 3}

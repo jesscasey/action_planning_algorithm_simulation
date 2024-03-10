@@ -366,7 +366,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
         m_MethodName: Heal
         m_Mode: 1
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 1
@@ -673,8 +673,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Unit, Assembly-CSharp
+      - m_Target: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
         m_MethodName: Block
         m_Mode: 1
         m_Arguments:

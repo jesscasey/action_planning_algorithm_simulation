@@ -57,10 +57,4 @@ public class Unit : MonoBehaviour
         currentHealth = currentHealth > maxHealth ? maxHealth : currentHealth + healAmount;
         healthBar.text = UpdateHealthBar();
     }
-
-    // Block damage during next turn
-    public void Block()
-    {
-        isBlocking = true;
-    }
 }

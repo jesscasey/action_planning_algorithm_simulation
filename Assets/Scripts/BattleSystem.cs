@@ -85,4 +85,11 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Unit is healing");
         ChangeTurn();
     }
+
+    public void Block()
+    {
+        currentUnit.isBlocking = true;
+        Debug.Log("Unit is blocking");
+        ChangeTurn();
+    }
 }
