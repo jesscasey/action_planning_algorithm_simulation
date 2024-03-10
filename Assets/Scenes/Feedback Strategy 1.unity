@@ -1076,7 +1076,8 @@ MonoBehaviour:
   player: {fileID: 2781121656276872715}
   enemy: {fileID: 7454307512598366580}
   textBox: {fileID: 1510661408}
-  advisorText: {fileID: 1155044807}
+  message: {fileID: 1155044807}
+  isAdvisor: 1
 --- !u!114 &3187148605174234865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
