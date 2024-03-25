@@ -15,8 +15,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
-    [SerializeField]
-    Unit leftUnit;
+    public Unit leftUnit;
     
     [SerializeField]
     Unit rightUnit;
