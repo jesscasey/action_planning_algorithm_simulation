@@ -16,14 +16,12 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     public Unit leftUnit;
-    
-    [SerializeField]
-    Unit rightUnit;
+    public Unit rightUnit;
 
     Unit currentUnit;
     Unit currentEnemy;
 
-    void Start()
+    public void Start()
     {
         state = BattleState.START;
         BattleSetup();
@@ -34,6 +32,9 @@ public class BattleSystem : MonoBehaviour
     {
         currentUnit = leftUnit;
         currentEnemy = rightUnit;
+
+        currentUnit.Start();
+        currentEnemy.Start();
 
         // Change colour of current unit to indicate whose turn it is
         currentUnit.gameObject.GetComponent<Renderer>().material.color =

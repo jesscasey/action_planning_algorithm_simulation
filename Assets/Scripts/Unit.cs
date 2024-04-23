@@ -17,7 +17,7 @@ public class Unit : MonoBehaviour
 
     public bool isBlocking;
 
-    void Start()
+    public void Start()
     {
         currentHealth = maxHealth;
         healthBar.text = UpdateHealthBar();
