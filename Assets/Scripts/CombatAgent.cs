@@ -39,7 +39,11 @@ public class CombatAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        // Define actions here
+        int decision = actions.DiscreteActions[0];
+
+        if(decision == 0) { sys.Attack(); }
+        if(decision == 1) { sys.Heal(); }
+        if(decision == 2) { sys.Block(); }
 
         // If enemy is defeated
         if(sys.rightUnit.currentHealth <= 0)
