@@ -32,8 +32,9 @@ public class CombatAgent : Agent
     // Observe environment
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Throws error CS1503
-        // sensor.AddObservation(hint.text);
+        // Observe agent and opponent's current health
+        sensor.AddObservation(agentUnit.currentHealth);
+        sensor.AddObservation(sys.rightUnit.currentHealth);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -48,7 +49,7 @@ public class CombatAgent : Agent
         }
 
         // If agent is defeated
-        if(sys.leftUnit.currentHealth <= 0)
+        if(agentUnit.currentHealth <= 0)
         {
             EndEpisode();
         }
