@@ -45,6 +45,18 @@ public class CombatAgent : Agent
         if(decision == 1) { sys.Heal(); }
         if(decision == 2) { sys.Block(); }
 
+        // The action currently being suggested
+        int suggestedAction;
+
+        if(hint.text == "Press 1 to attack") { suggestedAction = 0; }
+        else if(hint.text == "Press 2 to heal") { suggestedAction = 1; }
+        else if(hint.text == "Press 3 to block") { suggestedAction = 2; }
+
+        /* Provide positive reward if agent performs action suggested by the
+         * hint, and a negative reward otherwise */
+        if (suggestedAction == decision) { AddReward(1.0f); }
+        else { AddReward(-1.0f); }
+
         // If enemy is defeated
         if(sys.rightUnit.currentHealth <= 0)
         {
@@ -55,6 +67,7 @@ public class CombatAgent : Agent
         // If agent is defeated
         if(agentUnit.currentHealth <= 0)
         {
+            SetReward(-1.0f);
             EndEpisode();
         }
     }
