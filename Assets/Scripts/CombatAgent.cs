@@ -46,7 +46,7 @@ public class CombatAgent : Agent
         if(decision == 2) { sys.Block(); }
 
         // The action currently being suggested
-        int suggestedAction;
+        int suggestedAction = 0;
 
         if(hint.text == "Press 1 to attack") { suggestedAction = 0; }
         else if(hint.text == "Press 2 to heal") { suggestedAction = 1; }
