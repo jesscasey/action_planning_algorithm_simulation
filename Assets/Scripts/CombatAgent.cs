@@ -10,6 +10,7 @@ public class CombatAgent : Agent
 {
     Unit agentUnit;
 
+    [SerializeField]
     BattleSystem sys;
 
     public Text hint;

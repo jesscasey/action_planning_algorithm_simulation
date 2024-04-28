@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2781121655402781174}
   - component: {fileID: 2781121655402781169}
   - component: {fileID: 2781121655402781168}
+  - component: {fileID: -6736421083963841785}
+  - component: {fileID: 5930325158115340627}
   m_Layer: 0
   m_Name: Reinforcement Learning
   m_TagString: Untagged
@@ -111,5 +113,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89595955f40125c479df23ccab52f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
   healthBar: {fileID: 0}
   isBlocking: 0
+--- !u!114 &-6736421083963841785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781121655402781171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 1
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 0
+      BranchSizes: 01000000
+    VectorActionSize: 01000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: My Behavior
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_DeterministicInference: 0
+  m_ObservableAttributeHandling: 0
+--- !u!114 &5930325158115340627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781121655402781171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c155d7e9525ba5b47a41e3d46ce6fb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  sys: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
+  hint: {fileID: 0}
