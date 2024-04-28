@@ -30,6 +30,8 @@ public class BattleSystem : MonoBehaviour
     // Initialise game
     void BattleSetup()
     {
+        Debug.Log("Initialising game...");
+
         currentUnit = leftUnit;
         currentEnemy = rightUnit;
 

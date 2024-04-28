@@ -23,11 +23,7 @@ public class CombatAgent : Agent
     // Initialise and reset agent
     public override void OnEpisodeBegin()
     {
-        // Reset game if game ends
-        if (sys.state == BattleSystem.BattleState.END)
-        {
-            sys.Start();
-        }
+        sys.Start();
     }
 
     // Observe environment
