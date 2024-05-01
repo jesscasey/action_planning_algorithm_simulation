@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,22 +22,31 @@ public class BattleSystem : MonoBehaviour
     Unit currentUnit;
     Unit currentEnemy;
 
-    public void Start()
+    // Initialise game
+    public void BattleSetup()
     {
         state = BattleState.START;
-        BattleSetup();
-    }
-
-    // Initialise game
-    void BattleSetup()
-    {
         Debug.Log("Initialising game...");
 
-        currentUnit = leftUnit;
-        currentEnemy = rightUnit;
+        try
+        {
+            currentUnit = leftUnit;
+            currentEnemy = rightUnit;
+        }
+        catch(NullReferenceException ex)
+        {
+            Debug.Log("Units not set in inspector");
+        }
 
-        currentUnit.Start();
-        currentEnemy.Start();
+        try
+        {
+            currentUnit.SetHealth();
+            currentEnemy.SetHealth();
+        }
+        catch(NullReferenceException ex)
+        {
+            Debug.Log("Units are null");
+        }
 
         // Change colour of current unit to indicate whose turn it is
         currentUnit.gameObject.GetComponent<Renderer>().material.color =

@@ -23,7 +23,7 @@ public class CombatAgent : Agent
     // Initialise and reset agent
     public override void OnEpisodeBegin()
     {
-        sys.Start();
+        sys.BattleSetup();
     }
 
     // Observe environment

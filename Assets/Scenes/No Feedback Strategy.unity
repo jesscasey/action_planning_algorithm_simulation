@@ -913,6 +913,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 857189442}
     m_Modifications:
+    - target: {fileID: -6736421083963841785, guid: ca9629d380d2dcf4d9199e443d0665c0, type: 3}
+      propertyPath: m_BehaviorName
+      value: No Feedback Strategy
+      objectReference: {fileID: 0}
+    - target: {fileID: -6736421083963841785, guid: ca9629d380d2dcf4d9199e443d0665c0, type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2781121655402781168, guid: ca9629d380d2dcf4d9199e443d0665c0, type: 3}
       propertyPath: healthBar
       value: 
