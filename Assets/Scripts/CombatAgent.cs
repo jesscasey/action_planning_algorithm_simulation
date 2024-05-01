@@ -45,9 +45,12 @@ public class CombatAgent : Agent
         // The action currently being suggested
         int suggestedAction = 0;
 
-        if(hint.text == "Press 1 to attack") { suggestedAction = 0; }
-        else if(hint.text == "Press 2 to heal") { suggestedAction = 1; }
-        else if(hint.text == "Press 3 to block") { suggestedAction = 2; }
+        if(hint)
+        {
+            if (hint.text == "Press 1 to attack") { suggestedAction = 0; }
+            else if (hint.text == "Press 2 to heal") { suggestedAction = 1; }
+            else if (hint.text == "Press 3 to block") { suggestedAction = 2; }
+        }
 
         /* Provide positive reward if agent performs action suggested by the
          * hint, and a negative reward otherwise */
