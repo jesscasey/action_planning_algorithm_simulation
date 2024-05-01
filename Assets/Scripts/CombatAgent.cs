@@ -38,9 +38,18 @@ public class CombatAgent : Agent
     {
         int decision = actions.DiscreteActions[0];
 
-        if(decision == 0) { sys.Attack(); }
-        if(decision == 1) { sys.Heal(); }
-        if(decision == 2) { sys.Block(); }
+        switch(decision)
+        {
+            case 0:
+                sys.Attack();
+                break;
+            case 1:
+                sys.Heal();
+                break;
+            case 2:
+                sys.Block();
+                break;
+        }
 
         // The action currently being suggested
         int suggestedAction = 0;
