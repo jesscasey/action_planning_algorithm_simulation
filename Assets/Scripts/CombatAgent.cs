@@ -18,6 +18,8 @@ public class CombatAgent : Agent
     void Start()
     {
         agentUnit = gameObject.GetComponent<Unit>();
+        agentUnit.healthBar = GameObject.Find("Player/RL").GetComponent<UnityEngine.UI.Text>();
+        // agentUnit.SetHealth();
     }
 
     // Initialise and reset agent
@@ -31,7 +33,7 @@ public class CombatAgent : Agent
     {
         // Observe agent and opponent's current health
         sensor.AddObservation(agentUnit.currentHealth);
-        sensor.AddObservation(sys.rightUnit.currentHealth);
+        sensor.AddObservation(sys.rightUnit.GetComponent<Unit>().currentHealth);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -67,7 +69,7 @@ public class CombatAgent : Agent
         else { AddReward(-1.0f); }
 
         // If enemy is defeated
-        if(sys.rightUnit.currentHealth <= 0)
+        if(sys.rightUnit.GetComponent<Unit>().currentHealth <= 0)
         {
             SetReward(1.0f);
             EndEpisode();

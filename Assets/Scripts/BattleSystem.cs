@@ -16,44 +16,60 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
-    public Unit leftUnit;
-    public Unit rightUnit;
+    public GameObject leftUnit;
+    public GameObject rightUnit;
+
+    // Temp variables for instantiating
+    GameObject leftUnitInstantiate;
+    GameObject rightUnitInstantiate;
 
     Unit currentUnit;
     Unit currentEnemy;
 
+    void Start()
+    {
+        state = BattleState.START;
+        BattleSetup();
+        Debug.Log("Initialising game...");
+    }
+
     // Initialise game
     public void BattleSetup()
     {
-        state = BattleState.START;
-        Debug.Log("Initialising game...");
-
         try
         {
-            currentUnit = leftUnit;
-            currentEnemy = rightUnit;
+            leftUnitInstantiate = Instantiate(leftUnit, new Vector3(-2.3f, 0f, 0f), Quaternion.identity);
+            rightUnitInstantiate = Instantiate(rightUnit, new Vector3(2.3f, 0f, 0f), Quaternion.identity);
         }
         catch(NullReferenceException ex)
         {
             Debug.Log("Units not set in inspector");
         }
+    }
 
-        try
+    void Update()
+    {
+        if(state == BattleState.START)
         {
-            currentUnit.SetHealth();
-            currentEnemy.SetHealth();
-        }
-        catch(NullReferenceException ex)
-        {
-            Debug.Log("Units are null");
-        }
+            try
+            {
+                currentUnit = leftUnitInstantiate.GetComponent<Unit>();
+                currentEnemy = rightUnitInstantiate.GetComponent<Unit>();
+                currentUnit.SetHealth();
+                currentEnemy.SetHealth();
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.Log("Units are null");
+            }
 
-        // Change colour of current unit to indicate whose turn it is
-        currentUnit.gameObject.GetComponent<Renderer>().material.color =
-            new Color(0, 136, 189);
+            // Change colour of current unit to indicate whose turn it is
+            leftUnitInstantiate.GetComponent<Renderer>().material.color =
+                new Color(0, 136, 189);
 
-        state = BattleState.LEFTTURN;
-        Debug.Log("Left unit's turn");
+            state = BattleState.LEFTTURN;
+            Debug.Log("Left unit's turn");
+        }
     }
 
     void ChangeTurn()
@@ -61,8 +77,8 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Changing turns...");
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : 
             BattleState.LEFTTURN;
-        currentUnit = state == BattleState.LEFTTURN ? leftUnit : rightUnit;
-        currentEnemy = state == BattleState.LEFTTURN ? rightUnit : leftUnit;
+        currentUnit = state == BattleState.LEFTTURN ? leftUnitInstantiate.GetComponent<Unit>() : rightUnitInstantiate.GetComponent<Unit>();
+        currentEnemy = state == BattleState.LEFTTURN ? rightUnitInstantiate.GetComponent<Unit>() : leftUnitInstantiate.GetComponent<Unit>();
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;

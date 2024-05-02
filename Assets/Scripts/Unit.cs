@@ -11,9 +11,7 @@ public class Unit : MonoBehaviour
     int damage = 10; // Health points lost when unit is attacked
 
     public int currentHealth;
-
-    [SerializeField]
-    Text healthBar;
+    public Text healthBar;
 
     public bool isBlocking;
 
@@ -21,6 +19,7 @@ public class Unit : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.text = UpdateHealthBar();
+        isBlocking = false;
     }
 
     string UpdateHealthBar()

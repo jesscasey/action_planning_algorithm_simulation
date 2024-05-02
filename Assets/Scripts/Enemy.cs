@@ -11,7 +11,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        unitInfo = gameObject.GetComponent<Unit>();
+        unitInfo = GetComponent<Unit>();
+        unitInfo.healthBar = GameObject.Find("Enemy").GetComponent<UnityEngine.UI.Text>();
+        // unitInfo.SetHealth();
     }
 
     void Update()
@@ -23,7 +25,7 @@ public class Enemy : MonoBehaviour
             {
                 battle.Heal();
             }
-            else if (battle.leftUnit.isBlocking)
+            else if (battle.leftUnit.GetComponent<Unit>().isBlocking)
             {
                 battle.Block();
             }
