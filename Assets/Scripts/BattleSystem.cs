@@ -16,12 +16,12 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    // Temp variables for instantiating prefabs
+    public GameObject leftUnitPrefab;
+    public GameObject rightUnitPrefab;
+
     public GameObject leftUnit;
     public GameObject rightUnit;
-
-    // Temp variables for instantiating
-    GameObject leftUnitInstantiate;
-    GameObject rightUnitInstantiate;
 
     Unit currentUnit;
     Unit currentEnemy;
@@ -33,13 +33,15 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Initialising game...");
     }
 
-    // Initialise game
+    /* Instantiate prefabs. This means that the unit variables will always use
+     * newly instantiated prefabs, reducing the risk of a 
+     * NullReferenceException. */
     public void BattleSetup()
     {
         try
         {
-            leftUnitInstantiate = Instantiate(leftUnit, new Vector3(-2.3f, 0f, 0f), Quaternion.identity);
-            rightUnitInstantiate = Instantiate(rightUnit, new Vector3(2.3f, 0f, 0f), Quaternion.identity);
+            leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 0f, 0f), Quaternion.identity);
+            rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 0f, 0f), Quaternion.identity);
         }
         catch(NullReferenceException ex)
         {
@@ -53,8 +55,8 @@ public class BattleSystem : MonoBehaviour
         {
             try
             {
-                currentUnit = leftUnitInstantiate.GetComponent<Unit>();
-                currentEnemy = rightUnitInstantiate.GetComponent<Unit>();
+                currentUnit = leftUnit.GetComponent<Unit>();
+                currentEnemy = rightUnit.GetComponent<Unit>();
                 currentUnit.SetHealth();
                 currentEnemy.SetHealth();
             }
@@ -64,7 +66,7 @@ public class BattleSystem : MonoBehaviour
             }
 
             // Change colour of current unit to indicate whose turn it is
-            leftUnitInstantiate.GetComponent<Renderer>().material.color =
+            leftUnit.GetComponent<Renderer>().material.color =
                 new Color(0, 136, 189);
 
             state = BattleState.LEFTTURN;
@@ -77,8 +79,8 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Changing turns...");
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : 
             BattleState.LEFTTURN;
-        currentUnit = state == BattleState.LEFTTURN ? leftUnitInstantiate.GetComponent<Unit>() : rightUnitInstantiate.GetComponent<Unit>();
-        currentEnemy = state == BattleState.LEFTTURN ? rightUnitInstantiate.GetComponent<Unit>() : leftUnitInstantiate.GetComponent<Unit>();
+        currentUnit = state == BattleState.LEFTTURN ? leftUnit.GetComponent<Unit>() : rightUnit.GetComponent<Unit>();
+        currentEnemy = state == BattleState.LEFTTURN ? rightUnit.GetComponent<Unit>() : leftUnit.GetComponent<Unit>();
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;
