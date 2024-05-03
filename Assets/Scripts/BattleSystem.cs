@@ -17,8 +17,8 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     // Temp variables for instantiating prefabs
-    public GameObject leftUnitPrefab;
-    public GameObject rightUnitPrefab;
+    [SerializeField] GameObject leftUnitPrefab;
+    [SerializeField] GameObject rightUnitPrefab;
 
     public GameObject leftUnit;
     public GameObject rightUnit;
@@ -40,8 +40,8 @@ public class BattleSystem : MonoBehaviour
     {
         try
         {
-            leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 0f, 0f), Quaternion.identity);
-            rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 0f, 0f), Quaternion.identity);
+            leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 1f, -3f), Quaternion.identity);
+            rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 1f, -3f), Quaternion.identity);
         }
         catch(NullReferenceException ex)
         {
