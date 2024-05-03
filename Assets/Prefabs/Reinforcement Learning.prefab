@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2781121655402781168}
   - component: {fileID: -6736421083963841785}
   - component: {fileID: 5930325158115340627}
+  - component: {fileID: 8246413752879164428}
   m_Layer: 0
   m_Name: Reinforcement Learning
   m_TagString: Untagged
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89595955f40125c479df23ccab52f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  currentHealth: 100
   healthBar: {fileID: 0}
   isBlocking: 0
 --- !u!114 &-6736421083963841785
@@ -140,7 +141,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: My Behavior
   TeamId: 0
   m_UseChildSensors: 1
@@ -165,3 +166,17 @@ MonoBehaviour:
   MaxStep: 0
   sys: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
   hint: {fileID: 0}
+--- !u!114 &8246413752879164428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781121655402781171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
