@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
@@ -81,5 +82,15 @@ public class CombatAgent : Agent
             SetReward(-1.0f);
             EndEpisode();
         }
+    }
+
+    // Allows agent to be controlled by a human for testing purposes
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var disActionsOut = actionsOut.DiscreteActions;
+
+        // Listen for keyboard input
+        KeyDownEvent e = new KeyDownEvent();
+        disActionsOut[0] = (int)e.character;
     }
 }
