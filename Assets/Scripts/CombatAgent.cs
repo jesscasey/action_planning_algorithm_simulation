@@ -38,7 +38,7 @@ public class CombatAgent : Agent
     {
         // Observe agent and opponent's current health
         sensor.AddObservation(agentUnit.currentHealth);
-        sensor.AddObservation(sys.rightUnit.GetComponent<Unit>().currentHealth);
+        sensor.AddObservation(GameObject.Find("Enemy").GetComponent<Unit>().currentHealth);
     }
 
     public override void OnActionReceived(ActionBuffers actions)

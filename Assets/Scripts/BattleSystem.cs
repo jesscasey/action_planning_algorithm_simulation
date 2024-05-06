@@ -36,36 +36,44 @@ public class BattleSystem : MonoBehaviour
          * NullReferenceException. */
         try
         {
-            Debug.Log(leftUnitPrefab.ToString());
-            leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 1f, -3f), Quaternion.identity);
-            rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 1f, -3f), Quaternion.identity);
+            leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 1f, -3f),
+                Quaternion.identity);
+            rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 1f, -3f), 
+                Quaternion.identity);
         }
         catch (UnassignedReferenceException ex)
         {
             Debug.Log("Units not set in inspector");
         }
 
+        Debug.LogFormat("Units instantiated: {0}, {1}", leftUnit.ToString(), 
+            rightUnit.ToString());
+
         // Initialise units
         try
         {
             currentUnit = leftUnit.GetComponent<Unit>();
             currentEnemy = rightUnit.GetComponent<Unit>();
-            currentUnit.SetHealth();
-            currentEnemy.SetHealth();
-
-            // Change colour of current unit to indicate whose turn it is
-            leftUnit.GetComponent<Renderer>().material.color =
-                new Color(0, 136, 189);
         }
         catch (NullReferenceException ex)
         {
             Debug.Log("Units are null");
         }
 
+        currentUnit.SetHealth();
+        currentEnemy.SetHealth();
+
+        Debug.Log("Current unit: " + currentUnit.ToString());
+        Debug.Log("Current enemy: " + currentEnemy.ToString());
+        Debug.Log("Left unit after initialisation: " + leftUnit.ToString());
+        Debug.Log("Right unit after initialisation: " + rightUnit.ToString());
+
+        // Change colour of current unit to indicate whose turn it is
+        leftUnit.GetComponent<Renderer>().material.color =
+            new Color(0, 136, 189);
+
         state = BattleState.LEFTTURN;
         Debug.Log("Left unit's turn");
-
-        Debug.Log(state);
     }
 
     void Update()
