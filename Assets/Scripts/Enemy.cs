@@ -9,9 +9,9 @@ public class Enemy : MonoBehaviour
 
     Unit unitInfo;
 
-    void Start()
+    void Awake()
     {
-        unitInfo = GetComponent<Unit>();
+        unitInfo = gameObject.GetComponent<Unit>();
         unitInfo.healthBar = GameObject.Find("Enemy").GetComponent<UnityEngine.UI.Text>();
         // unitInfo.SetHealth();
     }
