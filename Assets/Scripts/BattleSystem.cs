@@ -26,52 +26,53 @@ public class BattleSystem : MonoBehaviour
     Unit currentUnit;
     Unit currentEnemy;
 
-    void Start()
+    public void Start()
     {
         state = BattleState.START;
-        BattleSetup();
         Debug.Log("Initialising game...");
-    }
 
-    /* Instantiate prefabs. This means that the unit variables will always use
-     * newly instantiated prefabs, reducing the risk of a 
-     * NullReferenceException. */
-    public void BattleSetup()
-    {
+        /* Instantiate prefabs. This means that the unit variables will always use
+         * newly instantiated prefabs, reducing the risk of a 
+         * NullReferenceException. */
         try
         {
+            Debug.Log(leftUnitPrefab.ToString());
             leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 1f, -3f), Quaternion.identity);
             rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 1f, -3f), Quaternion.identity);
         }
-        catch(NullReferenceException ex)
+        catch (UnassignedReferenceException ex)
         {
             Debug.Log("Units not set in inspector");
         }
-    }
 
-    void Update()
-    {
-        if(state == BattleState.START)
+        // Initialise units
+        try
         {
-            try
-            {
-                currentUnit = leftUnit.GetComponent<Unit>();
-                currentEnemy = rightUnit.GetComponent<Unit>();
-                currentUnit.SetHealth();
-                currentEnemy.SetHealth();
-            }
-            catch (NullReferenceException ex)
-            {
-                Debug.Log("Units are null");
-            }
+            currentUnit = leftUnit.GetComponent<Unit>();
+            currentEnemy = rightUnit.GetComponent<Unit>();
+            currentUnit.SetHealth();
+            currentEnemy.SetHealth();
 
             // Change colour of current unit to indicate whose turn it is
             leftUnit.GetComponent<Renderer>().material.color =
                 new Color(0, 136, 189);
-
-            state = BattleState.LEFTTURN;
-            Debug.Log("Left unit's turn");
         }
+        catch (NullReferenceException ex)
+        {
+            Debug.Log("Units are null");
+        }
+
+        state = BattleState.LEFTTURN;
+        Debug.Log("Left unit's turn");
+
+        Debug.Log(state);
+    }
+
+    void Update()
+    {
+        /* if(Input.GetKeyDown("1")) { Attack(); }
+        if(Input.GetKeyDown("2")) { Heal(); }
+        if(Input.GetKeyDown("3")) { Block(); } */
     }
 
     void ChangeTurn()

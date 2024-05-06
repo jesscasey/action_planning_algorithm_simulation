@@ -16,7 +16,7 @@ public class CombatAgent : Agent
 
     public Text hint;
 
-    void Start()
+    void Awake()
     {
         agentUnit = gameObject.GetComponent<Unit>();
         agentUnit.healthBar = GameObject.Find("Player/RL").GetComponent<UnityEngine.UI.Text>();
@@ -26,7 +26,11 @@ public class CombatAgent : Agent
     // Initialise and reset agent
     public override void OnEpisodeBegin()
     {
-        sys.BattleSetup();
+        // Ensures BattleSystem's Start() method is only called once on startup
+        if(sys.state != BattleSystem.BattleState.START) 
+        { 
+            sys.Start(); 
+        }
     }
 
     // Observe environment
