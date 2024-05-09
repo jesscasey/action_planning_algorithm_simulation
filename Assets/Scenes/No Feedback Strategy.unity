@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 598073629}
   - component: {fileID: 598073628}
   m_Layer: 5
-  m_Name: Enemy
+  m_Name: Enemy Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 1944156918}
   - component: {fileID: 1944156917}
   m_Layer: 5
-  m_Name: Player/RL
+  m_Name: RL Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

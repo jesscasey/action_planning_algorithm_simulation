@@ -24,7 +24,7 @@ public class CombatAgent : Agent
     void Awake()
     {
         agentUnit = gameObject.GetComponent<Unit>();
-        agentUnit.healthBar = GameObject.Find("Player/RL")
+        agentUnit.healthBar = GameObject.Find("RL Text")
             .GetComponent<UnityEngine.UI.Text>();
         // agentUnit.SetHealth();
     }
