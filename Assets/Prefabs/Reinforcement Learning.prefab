@@ -163,7 +163,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 5000
   sys: {fileID: 4456152758033846079, guid: 602774f16e9f0a345a01d46210e0c742, type: 3}
   hint: {fileID: 0}
 --- !u!114 &8246413752879164428
