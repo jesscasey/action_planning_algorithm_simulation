@@ -19,7 +19,8 @@ public class CombatAgent : Agent
     void Awake()
     {
         agentUnit = gameObject.GetComponent<Unit>();
-        agentUnit.healthBar = GameObject.Find("Player/RL").GetComponent<UnityEngine.UI.Text>();
+        agentUnit.healthBar = GameObject.Find("Player/RL")
+            .GetComponent<UnityEngine.UI.Text>();
         // agentUnit.SetHealth();
     }
 
@@ -36,9 +37,14 @@ public class CombatAgent : Agent
     // Observe environment
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Observe agent and opponent's current health
         sensor.AddObservation(agentUnit.currentHealth);
-        sensor.AddObservation(GameObject.Find("Enemy").GetComponent<Unit>().currentHealth);
+
+        // Prevents returning NullReferenceException before enemy spawns
+        if(GameObject.FindWithTag("Enemy"))
+        {
+            sensor.AddObservation(GameObject.FindWithTag("Enemy")
+                .GetComponent<Unit>().currentHealth);
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actions)
