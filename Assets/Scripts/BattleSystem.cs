@@ -85,11 +85,14 @@ public class BattleSystem : MonoBehaviour
 
     void ChangeTurn()
     {
+        UnitNullCheck();
         Debug.Log("Changing turns...");
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : 
             BattleState.LEFTTURN;
-        currentUnit = state == BattleState.LEFTTURN ? leftUnit.GetComponent<Unit>() : rightUnit.GetComponent<Unit>();
-        currentEnemy = state == BattleState.LEFTTURN ? rightUnit.GetComponent<Unit>() : leftUnit.GetComponent<Unit>();
+        currentUnit = state == BattleState.LEFTTURN ? 
+            leftUnit.GetComponent<Unit>() : rightUnit.GetComponent<Unit>();
+        currentEnemy = state == BattleState.LEFTTURN ? 
+            rightUnit.GetComponent<Unit>() : leftUnit.GetComponent<Unit>();
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;
@@ -103,6 +106,10 @@ public class BattleSystem : MonoBehaviour
 
     public void Attack()
     {
+        UnitNullCheck();
+        Debug.Log("Current enemy: " + currentEnemy.ToString());
+        Debug.Log(currentEnemy.isBlocking);
+
         // No damage will be done if the enemy is blocking
         bool isDead = currentEnemy.isBlocking ? false : 
             currentEnemy.TakeDamage();
@@ -120,6 +127,7 @@ public class BattleSystem : MonoBehaviour
 
     public void Heal()
     {
+        UnitNullCheck();
         currentUnit.Heal();
         Debug.Log("Unit is healing");
         ChangeTurn();
@@ -127,8 +135,18 @@ public class BattleSystem : MonoBehaviour
 
     public void Block()
     {
+        UnitNullCheck();
         currentUnit.isBlocking = true;
         Debug.Log("Unit is blocking");
         ChangeTurn();
+    }
+
+    /* Checks whether units are null. Most of the errors occurring in this
+     * script were caused by these variables becoming null at some point, so
+     * this method helps to identify where and why they become null. */
+    void UnitNullCheck()
+    {
+        if (!currentUnit) { Debug.Log("currentUnit is null"); }
+        if (!currentEnemy) { Debug.Log("currentEnemy is null"); }
     }
 }

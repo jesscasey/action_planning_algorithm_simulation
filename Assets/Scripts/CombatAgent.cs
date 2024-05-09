@@ -16,6 +16,11 @@ public class CombatAgent : Agent
 
     public Text hint;
 
+    void Start()
+    {
+        sys = GameObject.Find("Game Manager").GetComponent<BattleSystem>();
+    }
+
     void Awake()
     {
         agentUnit = gameObject.GetComponent<Unit>();
