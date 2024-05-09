@@ -36,10 +36,17 @@ public class BattleSystem : MonoBehaviour
          * NullReferenceException. */
         try
         {
-            leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 1f, -3f),
-                Quaternion.identity);
-            rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 1f, -3f), 
-                Quaternion.identity);
+            // Ensures prefabs are only instantiated once
+            if(!GameObject.FindWithTag("Player"))
+            {
+                leftUnit = Instantiate(leftUnitPrefab, new Vector3(-2.3f, 1f, -3f),
+                    Quaternion.identity);
+            }
+            if(!GameObject.FindWithTag("Enemy"))
+            {
+                rightUnit = Instantiate(rightUnitPrefab, new Vector3(2.3f, 1f, -3f),
+                    Quaternion.identity);
+            }
         }
         catch (UnassignedReferenceException ex)
         {
