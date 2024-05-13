@@ -20,11 +20,11 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameObject leftUnitPrefab;
     [SerializeField] GameObject rightUnitPrefab;
 
-    public GameObject leftUnit;
-    public GameObject rightUnit;
+    public static GameObject leftUnit;
+    public static GameObject rightUnit;
 
-    Unit currentUnit;
-    Unit currentEnemy;
+    public static Unit currentUnit;
+    public static Unit currentEnemy;
 
     public void Start()
     {
@@ -96,10 +96,9 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Changing turns...");
         state = state == BattleState.LEFTTURN ? BattleState.RIGHTTURN : 
             BattleState.LEFTTURN;
-        currentUnit = state == BattleState.LEFTTURN ? 
-            leftUnit.GetComponent<Unit>() : rightUnit.GetComponent<Unit>();
-        currentEnemy = state == BattleState.LEFTTURN ? 
-            rightUnit.GetComponent<Unit>() : leftUnit.GetComponent<Unit>();
+        Debug.Log(currentUnit.ToString() + currentEnemy.ToString());
+        (currentUnit, currentEnemy) = (currentEnemy, currentUnit);
+        Debug.Log(currentUnit.ToString() + currentEnemy.ToString());
 
         // Units stop blocking on their next turn
         currentUnit.isBlocking = false;
@@ -114,8 +113,8 @@ public class BattleSystem : MonoBehaviour
     public void Attack()
     {
         UnitNullCheck();
-        Debug.Log("Current enemy: " + currentEnemy.ToString());
-        Debug.Log(currentEnemy.isBlocking);
+        // Debug.Log("Current enemy: " + currentEnemy.ToString());
+        // Debug.Log(currentEnemy.isBlocking);
 
         // No damage will be done if the enemy is blocking
         bool isDead = currentEnemy.isBlocking ? false : 

@@ -85,7 +85,7 @@ public class CombatAgent : Agent
         else { AddReward(-1.0f); }
 
         // If enemy is defeated
-        if(sys.rightUnit.GetComponent<Unit>().currentHealth <= 0)
+        if(BattleSystem.rightUnit.GetComponent<Unit>().currentHealth <= 0)
         {
             SetReward(1.0f);
             EndEpisode();

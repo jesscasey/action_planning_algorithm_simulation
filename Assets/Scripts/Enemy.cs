@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
             {
                 battle.Heal();
             }
-            else if (battle.leftUnit.GetComponent<Unit>().isBlocking)
+            else if (BattleSystem.leftUnit.GetComponent<Unit>().isBlocking)
             {
                 battle.Block();
             }
