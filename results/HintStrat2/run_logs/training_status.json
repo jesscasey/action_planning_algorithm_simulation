@@ -1,0 +1,65 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 16998,
+                "file_path": "results\\HintStrat2\\My Behavior\\My Behavior-16998.onnx",
+                "reward": 15.001687289088864,
+                "creation_time": 1716153356.5069387,
+                "auxillary_file_paths": [
+                    "results\\HintStrat2\\My Behavior\\My Behavior-16998.pt"
+                ]
+            },
+            {
+                "steps": 17997,
+                "file_path": "results\\HintStrat2\\My Behavior\\My Behavior-17997.onnx",
+                "reward": 15.00048995590397,
+                "creation_time": 1716153382.4714522,
+                "auxillary_file_paths": [
+                    "results\\HintStrat2\\My Behavior\\My Behavior-17997.pt"
+                ]
+            },
+            {
+                "steps": 18996,
+                "file_path": "results\\HintStrat2\\My Behavior\\My Behavior-18996.onnx",
+                "reward": 14.999565972222221,
+                "creation_time": 1716153408.640402,
+                "auxillary_file_paths": [
+                    "results\\HintStrat2\\My Behavior\\My Behavior-18996.pt"
+                ]
+            },
+            {
+                "steps": 19996,
+                "file_path": "results\\HintStrat2\\My Behavior\\My Behavior-19996.onnx",
+                "reward": 15.000779119594858,
+                "creation_time": 1716153433.8978324,
+                "auxillary_file_paths": [
+                    "results\\HintStrat2\\My Behavior\\My Behavior-19996.pt"
+                ]
+            },
+            {
+                "steps": 20003,
+                "file_path": "results\\HintStrat2\\My Behavior\\My Behavior-20003.onnx",
+                "reward": 14.999610743479954,
+                "creation_time": 1716153434.0394602,
+                "auxillary_file_paths": [
+                    "results\\HintStrat2\\My Behavior\\My Behavior-20003.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20003,
+            "file_path": "results\\HintStrat2\\My Behavior.onnx",
+            "reward": 14.999610743479954,
+            "creation_time": 1716153434.0394602,
+            "auxillary_file_paths": [
+                "results\\HintStrat2\\My Behavior\\My Behavior-20003.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
