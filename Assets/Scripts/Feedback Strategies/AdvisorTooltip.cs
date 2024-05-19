@@ -6,12 +6,6 @@ using UnityEngine.UI;
 public class AdvisorTooltip : MonoBehaviour
 {
     [SerializeField]
-    Unit player;
-
-    [SerializeField]
-    Unit enemy;
-
-    [SerializeField]
     GameObject textBox;
 
     [SerializeField]
@@ -30,29 +24,36 @@ public class AdvisorTooltip : MonoBehaviour
 
     void Update()
     {
-        if (player.currentHealth < 20)
+        if (BattleSystem.leftUnit.GetComponent<Unit>().currentHealth < 20)
         {
             textBox.SetActive(true);
             message.text = isAdvisor ? "You are low on health. Try healing or" +
                 " blocking." : "Press 2 to heal";
+            CombatAgent.suggestedActions = isAdvisor ? new Vector3(0, 1, 1) :
+                new Vector3(0, 1, 0);
         }
-        else if (enemy.isBlocking)
+        else if (BattleSystem.rightUnit.GetComponent<Unit>().isBlocking)
         {
             textBox.SetActive(true);
             message.text = isAdvisor ? "The opponent is blocking. Attacking" +
                 " would be unwise." : "Press 3 to block";
+            CombatAgent.suggestedActions = isAdvisor ? new Vector3(0, 1, 1) :
+                new Vector3(0, 0, 1);
         }
-        else if (enemy.currentHealth < 20)
+        else if (BattleSystem.rightUnit.GetComponent<Unit>().currentHealth < 20)
         {
             textBox.SetActive(true);
             message.text = isAdvisor ? "The opponent is low on health. Attack" +
                 " them!" : "Press 1 to attack";
+            CombatAgent.suggestedActions = new Vector3(1, 0, 0);
         }
-        else if (player.currentHealth > 80)
+        else if (BattleSystem.leftUnit.GetComponent<Unit>().currentHealth > 80)
         {
             textBox.SetActive(true);
             message.text = isAdvisor ? "You are almost at full health. You" +
                 " should not heal at the moment." : "Press 1 to attack";
+            CombatAgent.suggestedActions = isAdvisor ? new Vector3(1, 0, 1) :
+                new Vector3(1, 0, 0);
         }
         else
         {

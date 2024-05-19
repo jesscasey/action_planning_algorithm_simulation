@@ -15,11 +15,19 @@ public class CombatAgent : Agent
     [SerializeField]
     BattleSystem sys;
 
-    public Text hint;
+    /* Indicates which actions the agent should take based on the hint
+     * currently being displayed. The axes represent the available actions;
+     * x = attack, y = heal, and z = block. If a hint recommends a specific
+     * action, the axis representing that action will be set to 1, with the
+     * remaining axes being set to 0. The opposite is true if a hint
+     * discourages a specific action. */
+    [Observable]
+    public static Vector3 suggestedActions;
 
     void Start()
     {
         sys = GameObject.Find("Game Manager").GetComponent<BattleSystem>();
+        suggestedActions = Vector3.zero;
     }
 
     void Awake()
@@ -27,7 +35,6 @@ public class CombatAgent : Agent
         agentUnit = gameObject.GetComponent<Unit>();
         agentUnit.healthBar = GameObject.Find("RL Text")
             .GetComponent<UnityEngine.UI.Text>();
-        // agentUnit.SetHealth();
     }
 
     // Initialise and reset agent
@@ -38,6 +45,8 @@ public class CombatAgent : Agent
         { 
             sys.Start(); 
         }
+
+        suggestedActions = Vector3.zero;
     }
 
     // Observe environment
@@ -55,6 +64,32 @@ public class CombatAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+
+        /* The desired action at a given step. This is usually an action that
+         * is recommended by the hint currently being displayed. */
+        int desiredAction = 0;
+
+        /* If no actions are suggested, i.e. if no hints are currently being
+         * provided */
+        if(suggestedActions == Vector3.zero)
+        {
+            if (agentUnit.currentHealth < 20) { desiredAction = 1; }
+            else if (BattleSystem.rightUnit.GetComponent<Unit>().isBlocking)
+            {
+                desiredAction = 2;
+            }
+            else { desiredAction = 0; } // Agent attacks by default
+        }
+        else
+        {
+            if(suggestedActions.x == 1) { desiredAction = 0; }
+            else if(suggestedActions.y == 1) { desiredAction = 1; }
+            /* If no other axes are equal to 1, and the vector is NOT equal to
+             * Vector3.zero, then z must be 1, thus the hint must be suggesting
+             * to block */
+            else { desiredAction = 2; }
+        }
+
         int decision = actions.DiscreteActions[0];
 
         switch(decision)
@@ -70,29 +105,9 @@ public class CombatAgent : Agent
                 break;
         }
 
-        // The action currently being suggested
-        int suggestedAction = 0;
-
-        if(hint)
-        {
-            if(hint.text == "Press 1 to attack") { suggestedAction = 0; }
-            else if(hint.text == "Press 2 to heal") { suggestedAction = 1; }
-            else if(hint.text == "Press 3 to block") { suggestedAction = 2; }
-        }
-        // If no hints are provided
-        else
-        {
-            if(agentUnit.currentHealth < 20) { suggestedAction = 1; }
-            else if(BattleSystem.rightUnit.GetComponent<Unit>().isBlocking)
-            {
-                suggestedAction = 2;
-            }
-            else { suggestedAction = 0; }
-        }
-
         /* Provide positive reward if agent performs action suggested by the
          * hint, and a negative reward otherwise */
-        if(suggestedAction == decision) { AddReward(1.0f); }
+        if(desiredAction == decision) { AddReward(1.0f); }
         else { AddReward(-1.0f); }
 
         // If enemy is defeated
