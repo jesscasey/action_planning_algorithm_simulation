@@ -1,0 +1,65 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 16998,
+                "file_path": "results\\NoHints2\\My Behavior\\My Behavior-16998.onnx",
+                "reward": 14.601237345331834,
+                "creation_time": 1716140309.6876528,
+                "auxillary_file_paths": [
+                    "results\\NoHints2\\My Behavior\\My Behavior-16998.pt"
+                ]
+            },
+            {
+                "steps": 17997,
+                "file_path": "results\\NoHints2\\My Behavior\\My Behavior-17997.onnx",
+                "reward": 14.600685938265556,
+                "creation_time": 1716140331.7206414,
+                "auxillary_file_paths": [
+                    "results\\NoHints2\\My Behavior\\My Behavior-17997.pt"
+                ]
+            },
+            {
+                "steps": 18996,
+                "file_path": "results\\NoHints2\\My Behavior\\My Behavior-18996.onnx",
+                "reward": 14.59939236111111,
+                "creation_time": 1716140353.8633263,
+                "auxillary_file_paths": [
+                    "results\\NoHints2\\My Behavior\\My Behavior-18996.pt"
+                ]
+            },
+            {
+                "steps": 19996,
+                "file_path": "results\\NoHints2\\My Behavior\\My Behavior-19996.onnx",
+                "reward": 14.601090767432801,
+                "creation_time": 1716140376.3751013,
+                "auxillary_file_paths": [
+                    "results\\NoHints2\\My Behavior\\My Behavior-19996.pt"
+                ]
+            },
+            {
+                "steps": 20003,
+                "file_path": "results\\NoHints2\\My Behavior\\My Behavior-20003.onnx",
+                "reward": 14.599455040871934,
+                "creation_time": 1716140376.5337577,
+                "auxillary_file_paths": [
+                    "results\\NoHints2\\My Behavior\\My Behavior-20003.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20003,
+            "file_path": "results\\NoHints2\\My Behavior.onnx",
+            "reward": 14.599455040871934,
+            "creation_time": 1716140376.5337577,
+            "auxillary_file_paths": [
+                "results\\NoHints2\\My Behavior\\My Behavior-20003.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
