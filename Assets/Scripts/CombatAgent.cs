@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Sensors.Reflection;
 using Unity.MLAgents.Actuators;
 
 public class CombatAgent : Agent
@@ -45,10 +46,10 @@ public class CombatAgent : Agent
         sensor.AddObservation(agentUnit.currentHealth);
 
         // Prevents returning NullReferenceException before enemy spawns
-        if(GameObject.FindWithTag("Enemy"))
+        if(BattleSystem.rightUnit)
         {
-            sensor.AddObservation(GameObject.FindWithTag("Enemy")
-                .GetComponent<Unit>().currentHealth);
+            sensor.AddObservation(BattleSystem.rightUnit.GetComponent<Unit>()
+                .currentHealth);
         }
     }
 
@@ -74,14 +75,24 @@ public class CombatAgent : Agent
 
         if(hint)
         {
-            if (hint.text == "Press 1 to attack") { suggestedAction = 0; }
-            else if (hint.text == "Press 2 to heal") { suggestedAction = 1; }
-            else if (hint.text == "Press 3 to block") { suggestedAction = 2; }
+            if(hint.text == "Press 1 to attack") { suggestedAction = 0; }
+            else if(hint.text == "Press 2 to heal") { suggestedAction = 1; }
+            else if(hint.text == "Press 3 to block") { suggestedAction = 2; }
+        }
+        // If no hints are provided
+        else
+        {
+            if(agentUnit.currentHealth < 20) { suggestedAction = 1; }
+            else if(BattleSystem.rightUnit.GetComponent<Unit>().isBlocking)
+            {
+                suggestedAction = 2;
+            }
+            else { suggestedAction = 0; }
         }
 
         /* Provide positive reward if agent performs action suggested by the
          * hint, and a negative reward otherwise */
-        if (suggestedAction == decision) { AddReward(1.0f); }
+        if(suggestedAction == decision) { AddReward(1.0f); }
         else { AddReward(-1.0f); }
 
         // If enemy is defeated
@@ -107,5 +118,6 @@ public class CombatAgent : Agent
         // Listen for keyboard input
         KeyDownEvent e = new KeyDownEvent();
         disActionsOut[0] = (int)e.character;
+        Debug.Log("Key pressed: " + disActionsOut[0]);
     }
 }
