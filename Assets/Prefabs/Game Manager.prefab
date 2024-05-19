@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32943e245e94030418b968323477c757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  leftUnitObject: {fileID: 0}
-  leftUnit: {fileID: 0}
-  rightUnitObject: {fileID: 0}
-  rightUnit: {fileID: 0}
+  state: 1
+  leftUnitPrefab: {fileID: 2781121655402781171, guid: ca9629d380d2dcf4d9199e443d0665c0, type: 3}
+  rightUnitPrefab: {fileID: 7454307513969160498, guid: bb2964bc8e205884c986a20eddc1b531, type: 3}
